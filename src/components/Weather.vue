@@ -1,34 +1,28 @@
 <template>
   <div v-if="weatherCache!=null">
-    <div>
-      <h4>{{weatherCache.location.name}}</h4>
-      <h5>{{weatherCache.location.region}}</h5>
-      <h5>{{weatherCache.location.country}}</h5>
-      <br/>
-    </div>
+    <v-container class="areaInfo">
+        <h4>{{weatherCache.location.name}}</h4>
+        <h5>{{weatherCache.location.region}}</h5>
+        <h5>{{weatherCache.location.country}}</h5>
+    </v-container>
 
-    <div v-if="isTabFlagCurrent">
+    <v-container class="currentCondition" v-if="isTabFlagCurrent">
+      <img v-bind:src="weatherCache.current.condition.icon" />
       <h3>{{weatherCache.current.feelslike_c}}°c</h3>
-      <p><h3>{{weatherCache.current.condition.text}} </h3> </p>
-      <img class="currentWeatherIcon" v-bind:src="weatherCache.current.condition.icon" />
-    </div>
+      <h3>{{weatherCache.current.condition.text}} </h3>
+    </v-container>
 
-    <div v-if="!isTabFlagCurrent"> 
-      <b-container>
-        <b-row>
+    <v-container v-if="!isTabFlagCurrent">
+        <b-row name>
           <b-col v-for="day in weatherCache.forecast.forecastday" :key="day.id">
-            <p>{{day.date}}</p>
-            <p>Avg Temp: {{day.day.avgtemp_c}}°c</p>
-            <p>{{day.day.condition.text}}</p>
+              <img v-bind:src="day.day.condition.icon" />
+              <p>Avg Temp: {{day.day.avgtemp_c}}°c</p>
+              <p>{{day.day.condition.text}}</p>
+              <p>{{day.date}}</p>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col v-for="day in weatherCache.forecast.forecastday" :key="day.id">
-            <img v-bind:src="day.day.condition.icon"/>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
+    </v-container>
+ 
   </div>
 </template>
 

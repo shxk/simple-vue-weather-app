@@ -1,13 +1,20 @@
 <template>
   <div>
-    <b-container>
-        <b-input-group prepend="Location" class="mt-3">
-          <b-form-input v-model="searchValue" @keyup.enter.native="searchLocation(searchValue)"></b-form-input>
-          <b-input-group-append>
-            <b-button variant="outline-success"  @click.prevent="searchLocation(searchValue)">Search</b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-container>
+      <v-container>
+        <v-layout >
+          <v-flex xs12 sm12 md12 lg6 offset-lg3 offset-md1>
+            <v-text-field
+            solo 
+            label="Search Location" 
+            v-model="searchValue" 
+            @keyup.enter.native="searchLocation(searchValue)"
+            append-icon="search"
+            @click:append="searchLocation(searchValue)"
+            >
+            </v-text-field>
+          </v-flex>
+        </v-layout>
+      </v-container>
   </div>
 </template>
 
@@ -30,5 +37,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .searchbar{
+    width: 50%;
+  }
 
 </style>

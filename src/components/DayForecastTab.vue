@@ -1,9 +1,11 @@
 <template>
   <div>
-    <b-tabs content-class="mt-3" align="center">
-      <b-tab title="Current" @click.prevent="setTabCurrent(true)" active></b-tab>
-      <b-tab title="7 Day Forecast" @click.prevent="setTabCurrent(false)"></b-tab>
-    </b-tabs>
+    <v-container class="displaytab">
+        <v-tabs fixed-tabs slider-color="blue">
+          <v-tab @click.prevent="setTabCurrent(true)">Current</v-tab>
+          <v-tab @click.prevent="setTabCurrent(false)">7 Day Forecast</v-tab>
+        </v-tabs>
+    </v-container>
   </div>
 </template>
 
@@ -13,7 +15,6 @@ export default {
   name: 'DayForecastTab',
   data(){
     return{
-      
     }
   },
   methods:{
@@ -26,5 +27,7 @@ export default {
 
 
 <style scoped lang="scss">
-
+  .displaytab{
+    margin-top: -50px;
+  }
 </style>
