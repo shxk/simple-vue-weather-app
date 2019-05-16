@@ -1,4 +1,4 @@
-# interview-proj
+# shak-vue-weatherapp
 
 ## Project setup
 ```
