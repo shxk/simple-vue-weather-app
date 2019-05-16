@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import service from '@/service.js'
+
 
 Vue.use(Vuex)
 
@@ -15,7 +17,10 @@ export default new Vuex.Store({
     setWeatherCache: (state, payload) => state.weatherCache = payload
   },
   actions: {
-
+    async searchLocation({ getters, commit, dispatch }, payload) {
+      let wF = await service.getWeather(payload + '&days=7');
+      commit('setWeatherCache', wF)
+    }
   },
   getters:{
     getTabFlag: (state) => state.isTabFlagCurrent,

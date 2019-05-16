@@ -19,6 +19,8 @@ export default {
     Weather,
     SearchBar,
     DayForecastTab
+  },
+  mounted(){
   }
 }
 </script>

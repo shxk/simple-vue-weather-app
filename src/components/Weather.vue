@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="weatherCache!=null">
     <div>
       <h4>{{weatherCache.location.name}}</h4>
       <h5>{{weatherCache.location.region}}</h5>
@@ -43,11 +43,7 @@ export default {
   },
   mounted(){
     store.commit('setTabFlag',true)
-
-    const context = this;
-    let wF = fetch('https://api.apixu.com/v1/forecast.json?key=b26ac48768b64da2aae125932190705&q=London&days=7')
-    .then(res => res.json())
-    .then(data => {store.commit('setWeatherCache', data)});
+    store.dispatch('searchLocation', 'London&days=7')
   },
   computed:{
     weatherCache:() => store.getters['getWeatherCache'],

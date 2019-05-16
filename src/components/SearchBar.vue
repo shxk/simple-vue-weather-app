@@ -13,6 +13,7 @@
 
 <script>
 import store from '@/store.js'
+import service from '@/service.js'
 export default {
   name: 'SearchBar',
   data(){
@@ -21,13 +22,8 @@ export default {
     }
   },
   methods:{
-    searchLocation: function(payload){
-
-      let apiUrl = 'https://api.apixu.com/v1/forecast.json?key=b26ac48768b64da2aae125932190705&q=' + payload + '&days=7'
-
-      let wF = fetch(apiUrl)
-      .then(res => res.json())
-      .then(data => {store.commit('setWeatherCache', data)});
+    searchLocation(payload){
+      store.dispatch('searchLocation',payload);
     }
   }
 }
